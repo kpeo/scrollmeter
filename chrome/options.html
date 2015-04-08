@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>ScrollMeter Options</title>
+	<link rel="stylesheet" href="css/options.css"/>
+	<script type="text/javascript" src="js/options.js"></script>
+</head>
+<body>
+	<div id="options-outer">
+		<h1 id="smSettingsTitle">ScrollMeter Options</h1>
+		<hr>
+		<section>
+			<h3 id="smSettingsUnits"><span i18n="smSettingsUnits">Units</span></h3>
+			<div class="settings-row">
+			<select id="units">
+				<option value="m" id="smSettingsUnitMeter"><span i18n="smSettingsUnitMeter">Meter</span></option>
+				<option value="mi"  id="smSettingsUnitMile"><span i18n="smSettingsUnitMile">Mile</span></option>
+				<option value="li"  id="smSettingsUnitLi"><span i18n="smSettingsUnitLi">Li</span></option>
+			</select>
+			<button id="save-button-unit" class="sm-save">Save</button><button id="save-button-unit-restore" class="sm-reset">Reset</button>
+			</div>
+		</section>
+		<section>
+			<h3 id="SmSettingsMouse">Mouse</h3>
+			<div class="settings-row">
+			<span id="smSettingsWheelTicks"><span i18n="smSettingsWheelTicks">Wheel ticks per revolution: </span></span><input id="wheelticks" type="number" class="mod" name="wheelticks" placeholder="Input ticks" min="0" max="1000" step="1"></span>
+			<br />
+			<span id="smSettingsWheelDiameter"><span i18n="smSettingsWheelDiameter">Wheel diameter (mm): </span></span><input id="wheeldiameter" type="number" class="mod" name="wheeldiameter" placeholder="Input diameter" min="0" max="1000" step="1"></span>
+			<div><button id="save-button-wheel" class="sm-save">Save</button><button id="save-button-wheel-restore" class="sm-reset">Reset</button></div>
+			</div>
+		</section>
+		<section>
+			<h3 d="SmSettingsData">Data</h3>
+			<div class="settings-row">
+				<span id="smSettingsAlert"><span i18n="smSettingsAlert">Alert at distance (units): </span></span><br /><input id="alertdistance" type="number" class="mod" name="alertdistance" placeholder="Input units" min="0" max="1000000" step="0.000001"><button id="save-button-alertdistance">Save</button><button id="save-button-alertdistance-restore" class="sm-reset">Reset</button>
+				<br />
+				<span id="smSettingsInactivity"><span i18n="smSettingsInactivity">Inactivity period (hours): </span></span><br /><input id="inactivity" type="number" class="mod" name="inactivity" placeholder="Input hours" min="0" max="1000" step="1"><button id="save-button-inactivity">Save</button><button id="save-button-inactivity-restore" class="sm-reset">Reset</button>
+				<br />
+				<div class="checkbox" >
+					<label style="padding-top: 0px;">
+						<input type="checkbox" id="resetstat"><span id="smSettingsResetstat"><span i18n="smSettingsResetstat">Reset sites statistics on first presence</span></span>
+						<button id="save-button-resetstat" class="sm-save">Save</button><button id="save-button-resetstat-restore" class="sm-reset">Reset</button>
+					</label>
+				</div>
+			</div>
+			<div class="settings-row">
+				<div id="localstorage-wrapper">
+					<table id="localstorage" class="datagrid"></table>
+				</div>
+			</div>
+			<div class="settings-row">
+			<button id="save-button-clean" >Clean data</button>
+			<button id="save-button-clean-opt" >Clean options</button>
+			</div>
+		</section>
+		<section>
+		<div id="smSettingsSite">If you like the extension, please visit </div><a href="http://scrollmeter.com">ScrollMeter</a>
+		</section>
+	</div>
+</body>
+</html>

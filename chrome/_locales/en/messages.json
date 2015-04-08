@@ -1,0 +1,120 @@
+{
+	"sm_description": {
+		"message": "This extension displays the statistics on scrolled distance for current site",
+		"description": "The description of the application, displayed in the web store."
+	},
+	"smSettingsTitle": {
+		"message": "ScrollMeter Options",
+		"description": "Main options title"
+	},
+	"smSettingsUnits": {
+		"message": "Units",
+		"description": "Units"
+	},
+	"smSettingsUnitMeter": {
+		"message": "Meter",
+		"description": "Standart Meter"
+	},
+	"smSettingsUnitMile": {
+		"message": "Mile",
+		"description": "British Mile"
+	},
+	"smSettingsUnitLi": {
+		"message": "Li",
+		"description": "Japan Li"
+	},
+	"smSettingsUnitSave": {
+		"message": "Save"
+	},
+	"smSettingsUnitReset": {
+		"message": "Reset"
+	},
+	"smSettingsWheelTicks": {
+		"message": "Wheel ticks per revolution: ",
+		"description": "Ticks (clicks) per wheel revolution"
+	},
+	"smSettingsWheelDiameter": {
+		"message": "Wheel diameter (mm): ",
+		"description": "Real wheel diameter"
+	},
+	"smSettingsWheelSave": {
+		"message": "Save"
+	},
+	"smSettingsWheelReset": {
+		"message": "Reset"
+	},
+	"smSettingsAlert": {
+		"message": "Alert at distance (units): ",
+		"description": "Alert message when sum of values for site reached the current value"
+	},
+	"smSettingsAlertSave": {
+		"message": "Save"
+	},
+	"smSettingsAlertReset": {
+		"message": "Reset"
+	},
+	"smSettingsInactivity": {
+		"message": "Inactivity period (hours): ",
+		"description": "Inactivity period, after which we decide to restart the counters for new day"
+	},
+	"smSettingsInactivitySave": {
+		"message": "Save"
+	},
+	"smSettingsInactivityReset": {
+		"message": "Reset"
+	},
+	"smSettingsResetstat": {
+		"message": "Reset sites statistics on first presence",
+		"description": "Restart all counters after inactivity period (to clean the sum of values for current site)"
+	},
+	"smSettingsResetstatSave": {
+		"message": "Save"
+	},
+	"smSettingsResetstatReset": {
+		"message": "Reset"
+	},
+	"smStorageDataSite": {
+		"message": "site",
+		"description": "Site for statistics"
+	},
+	"smStorageDataDistance": {
+		"message": "dist.",
+		"description": "Distance reached on current site"
+	},
+	"smStorageDataMaxDistance": {
+		"message": "max dist.",
+		"description": "Maximum of distance reached on current site"
+	},
+	"smStorageDataTime": {
+		"message": "time",
+		"description": "Time for maximum of distance"
+	},
+	"smStorageCleanData": {
+		"message": "Clean data",
+		"description": "Clean the data saved to local storage"
+	},
+	"smStorageCleanOptions": {
+		"message": "Clean options",
+		"description": "Clean the options saved to local storage"
+	},
+	"smSettingsSite" : {
+		"message": "If you like the extension, please visit ",
+		"description": "Link to the site of ScrollMeter"
+	},
+	"smPopupEnable": {
+		"message": "Enable",
+		"description": "Enable the extension on current site"
+	},
+	"smPopupDisable": {
+		"message": "Disable",
+		"description": "Disable the extension on current site"
+	},
+	"smPopupMax": {
+		"message": "Max.:",
+		"description": "Previous distance for current site (for all periods)"
+	},
+	"smPopupPrevious": {
+		"message": "Prev.:",
+		"description": "Previous distance for current site (before the inactive period)"
+	}
+}

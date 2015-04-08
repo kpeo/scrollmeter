@@ -1,0 +1,98 @@
+﻿{
+	"smDesc": {
+		"message": "Это дополнение отображает статистику расстояний, прокрученных на текущем сайте"
+	},
+	"smSettingsTitle": {
+		"message": "Настройки ScrollMeter"
+	},
+	"smSettingsUnits": {
+		"message": "Единицы измерения"
+	},
+	"smSettingsUnitMeter": {
+		"message": "Метр"
+	},
+	"smSettingsUnitMile": {
+		"message": "Миля"
+	},
+	"smSettingsUnitLi": {
+		"message": "Ли"
+	},
+	"smSettingsUnitSave": {
+		"message": "Сохранить"
+	},
+	"smSettingsUnitReset": {
+		"message": "Сбросить"
+	},
+	"smSettingsWheelTicks": {
+		"message": "Щелчков колеса за поворот: "
+	},
+	"smSettingsWheelDiameter": {
+		"message": "Диаметр колеса (мм): "
+	},
+	"smSettingsWheelSave": {
+		"message": "Сохранить"
+	},
+	"smSettingsWheelReset": {
+		"message": "Сбросить"
+	},
+	"smSettingsAlert": {
+		"message": "Сигнал по достижении расстояния (единицы): "
+	},
+	"smSettingsAlertSave": {
+		"message": "Сохранить"
+	},
+	"smSettingsAlertReset": {
+		"message": "Сбросить"
+	},
+	"smSettingsInactivity": {
+		"message": "Период неактивности (часы): "
+	},
+	"smSettingsInactivitySave": {
+		"message": "Сохранить"
+	},
+	"smSettingsInactivityReset": {
+		"message": "Сбросить"
+	},
+	"smSettingsResetstat": {
+		"message": "Сбросить статистику сайтов при первом появлении"
+	},
+	"smSettingsResetstatSave": {
+		"message": "Сохранить"
+	},
+	"smSettingsResetstatReset": {
+		"message": "Сбросить"
+	},
+	"smStorageDataSite": {
+		"message": "сайт"
+	},
+	"smStorageDataDistance": {
+		"message": "расст."
+	},
+	"smStorageDataMaxDistance": {
+		"message": "макс. расст."
+	},
+	"smStorageDataTime": {
+		"message": "время"
+	},
+	"smStorageCleanData": {
+		"message": "Очистить данные"
+	},
+	"smStorageCleanOptions": {
+		"message": "Сбросить настройки"
+	},
+	"smSettingsSite" : {
+		"message": "Если Вам нравится расширение, пожалуйста посетите "
+	},
+	"smPopupEnable": {
+		"message": "Включить"
+	},
+	"smPopupDisable": {
+		"message": "Отключить"
+	},
+	"smPopupMax": {
+		"message": "Макс.:"
+	},
+	"smPopupPrevious": {
+		"message": "Пред.:"
+	}
+}
