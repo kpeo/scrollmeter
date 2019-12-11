@@ -4,7 +4,7 @@
 
 	"name": "ScrollMeter",
 	"description": "This extension displays the statistics on scrolled distance for current site",
-	"version": "0.1",
+	"version": "0.0.2",
 
 	"default_locale": "en",
 
@@ -35,6 +35,6 @@
 		"run_at": "document_end"
 	} ],
 	"permissions": [
-		"tabs", "http://*/*", "https://*/*","storage", "webRequest"
+		"tabs", "activeTab", "http://*/*", "https://*/*","storage", "webRequest"
 	]
 }

@@ -1,3 +1,9 @@
+const SM_DIST_MI = 1609.344;
+const SM_DIST_LI = 500;
+const SM_ALERT = 1
+
+var browser = chrome || browser;
+
 var defaultUnit = "m";
 var defaultAlertDistance = 1; //1 unit
 var defaultInactive = 6;
@@ -55,8 +61,8 @@ window.onload = function()
 };
 
 function getMessage(id, name) {
-	var message = chrome.i18n.getMessage(name);
-	document.getElementById(id).innerHTML = message;
+	var message = browser.i18n.getMessage(name);
+	document.getElementById(id).textContent = message;
 }
 
 function GetStep(unit,decimals)
@@ -71,7 +77,7 @@ function GetStep(unit,decimals)
 			break;
 		case "m" :
 		default:
-			step = (decimals) ? 0 :1;
+			step = (decimals) ? 0 : 1;
 	}
 	return step;
 }
@@ -82,10 +88,10 @@ function InternalToUnits(val, unit)
 	var res;
 	switch(unit) {
 		case "mi":
-			res = val/100/1609.344;
+			res = val/100/SM_DIST_MI;
 			break;
 		case "li":
-			res = val/100/500;
+			res = val/100/SM_DIST_LI;
 			break;
 		case "m":
 		default:
@@ -130,16 +136,16 @@ function addTable(id, obj) {
 		var hrow;
 		switch(h) {
 			case 0:
-				var hrow = chrome.i18n.getMessage("smStorageDataSite") || "site";
+				var hrow = browser.i18n.getMessage("smStorageDataSite") || "site";
 				break;
 			case 1:
-				var hrow = chrome.i18n.getMessage("smStorageDataDistance") || "dist.";
+				var hrow = browser.i18n.getMessage("smStorageDataDistance") || "dist.";
 				break;
 			case 2:
-				var hrow = chrome.i18n.getMessage("smStorageDataMaxDistance") || "max dist.";
+				var hrow = browser.i18n.getMessage("smStorageDataMaxDistance") || "max dist.";
 				break;
 			case 3:
-				var hrow = chrome.i18n.getMessage("smStorageDataTime") || "time";
+				var hrow = browser.i18n.getMessage("smStorageDataTime") || "time";
 		}
 		th.appendChild( document.createTextNode(hrow) );
 		tr.appendChild( th );
@@ -196,7 +202,7 @@ function loadOptions()
 	data += ( loadStorage() )? 1:0;
 	options += ( loadWheel() )? 1:0;
 
-	//console.log("opt: " + options + "data: " + data);
+	//console.debug("opt: " + options + "data: " + data);
 	document.getElementById("save-button-clean-opt").disabled = (options)?false:true;
 	document.getElementById("save-button-clean").disabled = (data)?false:true;
 }
@@ -241,8 +247,8 @@ function loadLocales()
 function loadUnit()
 {
 	var changed = false;
-	var unit = localStorage["SM_unit"];
-	console.log("changeUnit: " + unit);
+	var unit = localStorage.getItem("SM_unit");
+	console.debug("changeUnit: " + unit);
 	
 	if (unit == undefined || (unit != "m" && unit != "mi" && unit != "li"))
 		unit = defaultUnit;
@@ -272,16 +278,16 @@ function saveUnit() {
 	var select = document.getElementById("units");
 	var unit = select.children[select.selectedIndex].value;
 	SM_unit = unit;
-	console.log("saveUnit:" + unit);
+	console.debug("saveUnit: " + unit);
 	localStorage.setItem("SM_unit", unit);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function changeUnit() {
 	var select = document.getElementById("units");
 	var unit = select.children[select.selectedIndex].value;
-	console.log("changeUnit: " + unit);
+	console.debug("changeUnit: " + unit);
 	if (unit == defaultUnit && SM_unit == defaultUnit)
 		document.getElementById("save-button-unit").disabled = true;
 	else
@@ -290,18 +296,18 @@ function changeUnit() {
 
 function restoreUnit() {
 	localStorage.setItem("SM_unit", defaultUnit);
-	chrome.extension.sendMessage({name: "loadOptions"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions"}, function(response) {});
 	location.reload();
 }
 
 function loadAlertDistance()
 {
 	var changed = false;
-	var alertdistance = localStorage["SM_alertdistance"]; //save as unit format
+	var alertdistance = localStorage.getItem("SM_alertdistance"); //save as unit format
 	if (alertdistance == undefined)
 		alertdistance = defaultAlertDistance;
 	SM_alertdistance = parseFloat( alertdistance );
-	console.log("loadAlertDistance: " + SM_alertdistance + ", default: " +defaultAlertDistance + ", value:" + alertdistance);
+	console.debug("loadAlertDistance: " + SM_alertdistance + ", default: " +defaultAlertDistance + ", value:" + alertdistance);
 	if( alertdistance == defaultAlertDistance )
 		document.getElementById("save-button-alertdistance").disabled = true;
 	else {
@@ -321,24 +327,24 @@ function saveAlertDistance()
 	if ( alertdistance != undefined ) {
 		localStorage.setItem("SM_alertdistance", alertdistance);
 	}
-	console.log("saveAlertDistance: " + alertdistance );
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	console.debug("saveAlertDistance: " + alertdistance );
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function restoreAlertDistance()
 {
 	localStorage.setItem("SM_alertdistance", defaultAlertDistance);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function changeAlertDistance()
 {
 	var input = document.getElementById("alertdistance").value;
-	console.log("changeAlertDistance alertdistance: " + input);
+	console.debug("changeAlertDistance alertdistance: " + input);
 	var a = parseFloat( input.replace(/,/, '.') );
-	console.log("changeAlertDistance: " + a + ", SM_alertdistance: " + SM_alertdistance + ", default: " + defaultAlertDistance + ", precision: " + GetStep(SM_unit,false) );
+	console.debug("changeAlertDistance: " + a + ", SM_alertdistance: " + SM_alertdistance + ", default: " + defaultAlertDistance + ", precision: " + GetStep(SM_unit,false) );
 	if ( a == defaultAlertDistance && SM_alertdistance == defaultAlertDistance ) 
 		document.getElementById("save-button-alertdistance").disabled = true;
 	else
@@ -348,7 +354,7 @@ function changeAlertDistance()
 function loadInactivity()
 {
 	var changed = false;
-	var inactivity = localStorage["SM_inactive"];
+	var inactivity = localStorage.getItem("SM_inactive");
 	if (inactivity == undefined)
 		inactivity = defaultInactive;
 	SM_inactive = parseInt( inactivity );
@@ -369,13 +375,13 @@ function saveInactivity() {
 	var inactivity = parseInt(inactivity_text);
 	if (inactivity != undefined && inactivity > 0)
 		localStorage.setItem("SM_inactive", inactivity);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function changeInactivity() {
 	var input = document.getElementById("inactivity").value;
-	console.log("inactivity: " + input);
+	console.debug("inactivity: " + input);
 	if (parseInt( input ) == defaultInactive && SM_inactive == defaultInactive)
 		document.getElementById("save-button-inactivity").disabled = true;
 	else
@@ -384,7 +390,7 @@ function changeInactivity() {
 
 function restoreInactivity() {
 	localStorage.setItem("SM_inactive", defaultInactive);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
@@ -392,12 +398,12 @@ function loadResetStat()
 {
 	var changed = false;
 	var resetstat = defaultResetStat;
-	var rs = localStorage["SM_resetstat"];
+	var rs = localStorage.getItem("SM_resetstat");
 	if (rs != undefined)
 		resetstat = parseInt( rs )? true : false;
 	else
 		resetstat = defaultResetStat;
-	console.log("load resetstat: " + resetstat);
+	console.debug("load resetstat: " + resetstat);
 	SM_resetstat = resetstat;
 	if(resetstat != defaultResetStat) {
 		changed = true;
@@ -415,23 +421,23 @@ function loadResetStat()
 
 function resetStat() {
 	var check = document.getElementById("resetstat").checked;
-	console.log("resetStat: " + check);
+	console.debug("resetStat: " + check);
 	localStorage.setItem( "SM_resetstat", (check)?1:0 );
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function restoreResetStat()
 {
 	localStorage.setItem( "SM_resetstat", (defaultResetStat)?1:0);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function changeResetStat()
 {
 	var check = document.getElementById("resetstat").checked;
-	console.log("resetstat: " + check);
+	console.debug("resetstat: " + check);
 	if (check == defaultResetStat && SM_resetstat == defaultResetStat)
 		document.getElementById("save-button-resetstat").disabled = true;
 	else
@@ -441,7 +447,7 @@ function changeResetStat()
 function loadStorage()
 {
 	var changed = false;
-	var stat = localStorage["SM_stat"];
+	var stat = localStorage.getItem("SM_stat");
 	if (stat != undefined) {
 		SM_stat = JSON.parse(stat)
 		addTable("localstorage", SM_stat);
@@ -453,7 +459,7 @@ function loadStorage()
 function cleanStorage() {
 	localStorage.removeItem("SM_stat");
 	document.getElementById("save-button-clean").disabled = true;
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
@@ -464,15 +470,15 @@ function cleanStorageOpt() {
 	localStorage.removeItem("SM_resetstat");
 	localStorage.removeItem("SM_enabled");
 	document.getElementById("save-button-clean-opt").disabled = true;
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function loadWheel()
 {
 	var changed = false;
-	var wheel_ticks = localStorage["SM_ticks"];
-	var wheel_diameter = localStorage["SM_diameter"];
+	var wheel_ticks = localStorage.getItem("SM_ticks");
+	var wheel_diameter = localStorage.getItem("SM_diameter");
 
 	if (wheel_ticks == undefined)
 		wheel_ticks = defaultWheelTicks;
@@ -505,14 +511,14 @@ function saveWheel() {
 	
 	if(wheel_diameter != undefined && wheel_diameter > 0)
 		localStorage.setItem("SM_diameter", wheel_diameter);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
 
 function changeWheelTicks()
 {
 	var input = document.getElementById("wheelticks").value;
-	console.log("wheelticks: " + input + ", check: " + checkWheel);
+	console.debug("wheelticks: " + input + ", check: " + checkWheel);
 	
 	if (parseInt( input ) == defaultWheelTicks && SM_ticks == defaultWheelTicks)
 		checkWheel |= 1;
@@ -528,7 +534,7 @@ function changeWheelTicks()
 function changeWheelDiameter()
 {
 	var input = document.getElementById("wheeldiameter").value;
-	console.log("wheeldiameter: " + input + ", check: " + checkWheel);
+	console.debug("wheeldiameter: " + input + ", check: " + checkWheel);
 	if (parseInt( input ) == defaultWheelDiameter && SM_diameter == defaultWheelDiameter)
 		checkWheel |= 2;
 	else
@@ -544,6 +550,6 @@ function restoreWheel()
 {
 	localStorage.setItem("SM_ticks", defaultWheelTicks);
 	localStorage.setItem("SM_diameter", defaultWheelDiameter);
-	chrome.extension.sendMessage({name: "loadOptions", source: "options"}, function(response) {});
+	browser.runtime.sendMessage({message: "loadOptions", source: "options"}, function(response) {});
 	location.reload();
 }
