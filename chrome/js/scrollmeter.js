@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('SM_enabled').addEventListener('click', function() {
         if (sm.value == (browser.i18n.getMessage("smPopupDisable") || "Disable")) {
             // save to localstore
-            browser.runtime.sendMessage({message: "setOptions",vstatus: 'Enable'}, function(response) {});
+            browser.runtime.sendMessage({message: "setOptions", status: 'Enable'}, function(response) {});
             sm.value = browser.i18n.getMessage("smPopupEnable") || "Enable";
             browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
                 var code = 'window.location.reload();';
