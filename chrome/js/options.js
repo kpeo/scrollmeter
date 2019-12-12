@@ -5,8 +5,8 @@ const SM_ALERT = 1
 var browser = chrome || browser;
 
 var defaultUnit = "m";
-var defaultAlertDistance = 1; //1 unit
-var defaultInactive = 6;
+var defaultAlertDistance = 100; //100 meters/miles/li
+var defaultInactive = 1; //1 hour
 var defaultResetStat = true;
 var defaultWheelTicks = 23;
 var defaultWheelDiameter = 23;

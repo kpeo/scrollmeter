@@ -1,7 +1,7 @@
 const SM_DIST_MI = 1609.344;
 const SM_DIST_LI = 500;
-const SM_ALERT_DISTANCE = 1;
-const SM_INACTIVE = 6;
+const SM_ALERT_DISTANCE = 100; //100 meters
+const SM_INACTIVE = 1; //1 hour
 
 // TODO: update SM on tab switching
 var SM_stat = {};

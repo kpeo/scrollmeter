@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	"minimum_chrome_version": "20",
+
+	"name": "ScrollMeter",
+	"description": "This extension displays the statistics on scrolled distance for current site",
+	"version": "0.0.2",
+
+	"default_locale": "en",
+
+	"icons": {
+		"128": "/img/icon128.png",
+		"16": "/img/icon16.png",
+		"48": "/img/icon48.png"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"browser_style": true
+	},
+	"page_action": {
+		"default_icon": "/img/icon32bw.png",
+		"default_popup": "popup.html",
+		"default_title": "ScrollMeter Options"
+	},
+	"background": {
+		"scripts": [ "js/background.js" ]
+	},
+	"content_scripts": [ {
+		"all_frames": false,
+		"css": [ "css/scrollmeter.css" ],
+		"js": [ "js/scrollmeter.js" ],
+		"matches": [ "http://*/*", "https://*/*" ],
+		"run_at": "document_end"
+	} ],
+	"permissions": [
+		"tabs", "http://*/*", "https://*/*","storage", "webRequest"
+	]
+}
